@@ -1,0 +1,9 @@
+<p>Title: {{title}}</p>
+<p>Counter: {{count()}}</p>
+<p>Test double count change</p>
+@if (showCount()) {
+    <p>Double count: {{doubleCount()}}</p>
+}
+<p>{{conditionalCount()}}</p>
+<button class="mr-2" mat-raised-button (click)="addCount()">Add count</button>
+<button mat-raised-button (click)="triggerCount()">Show count</button>

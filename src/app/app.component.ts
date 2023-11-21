@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, MatButtonModule],
   selector: 'nx-angular-new-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
