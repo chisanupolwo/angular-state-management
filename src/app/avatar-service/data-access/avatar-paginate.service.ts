@@ -29,6 +29,8 @@ export class AvatarPaginateService {
         concatMap(() => this.getData(this.page()))
     )
 
+    lastPage$ = new Subject<void>()
+
     // Selectors
     avatar = computed(() => this.state()?.value)
     error = computed(() => this.state()?.error?.message)
@@ -63,7 +65,7 @@ export class AvatarPaginateService {
     private getData(page: number | undefined): Observable<Avatar[]> {
         console.log('Page', page)
         console.log('Item', this.itempage())
-        return this.http.get<Avatar[]>('https://api.sampleapis.com/avatar/episodes').pipe(
+        return this.http.get<Avatar[]>('https://api.sampleapis.com/avatar/episode').pipe(
             delay(3000),
             catchError(error => {
                 this.handleError(error)
@@ -75,6 +77,9 @@ export class AvatarPaginateService {
 
     private handleError(error: HttpErrorResponse) {
         console.log('Handle error', error)
+        if (error.status === 404) {
+            this.lastPage$.next();
+        }
         this.state.update(state => ({ ...state, value: undefined, error: { message: error.message } }))
     }
 }

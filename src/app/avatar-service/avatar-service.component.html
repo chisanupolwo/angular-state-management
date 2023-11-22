@@ -7,7 +7,6 @@
         <button mat-raised-button (click)="nextPage()">Next</button>
         <button mat-raised-button (click)="itemPage()">Item page</button>
     </div>
-    <p>{{avatarService.avatar()}}</p>
     @if (avatarService.avatar()) {
         @for (avatar of avatarService.avatar(); track avatar.id) {
             <div class="flex flex-col my-2">
